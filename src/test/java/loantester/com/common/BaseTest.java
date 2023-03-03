@@ -1,4 +1,4 @@
-package loantester.com;
+package loantester.com.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

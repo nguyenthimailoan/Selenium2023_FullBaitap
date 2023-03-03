@@ -1,14 +1,14 @@
-package loantester.com;
+package loantester.com.baitap1_2;
 
 import KeyWords.WebUI;
+import loantester.com.common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestNG_BT1 extends BaseTest{
+public class TestNG_BT1 extends BaseTest {
 
     @Test(priority=1)
     public void loginCMS (){

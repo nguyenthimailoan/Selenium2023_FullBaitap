@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Loan_Webdriver_BT-1_2" />
+        <module name="Selenium2023_FullBaitap" />
       </profile>
     </annotationProcessing>
   </component>
