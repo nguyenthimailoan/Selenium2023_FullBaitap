@@ -66,13 +66,13 @@ public class TestNG_BT1 extends BaseTest {
 
 
         //trường icon
-        driver.findElement(By.xpath("(//div[@class='form-control file-amount'])[2]")).click();
-        driver.findElement(By.xpath("//input[@name='aiz-uploader-search']")).sendKeys("car",Keys.ENTER);
-        WebUI.sleep(5);
-        driver.findElement(By.xpath("(//div[@class='card-file-thumb']//img)[1]")).click();
-        WebUI.sleep(5);
-        driver.findElement(By.xpath("//button[normalize-space()='Add Files']")).click();
-        WebUI.sleep(5);
+//        driver.findElement(By.xpath("(//div[@class='form-control file-amount'])[2]")).click();
+//        driver.findElement(By.xpath("//input[@name='aiz-uploader-search']")).sendKeys("car",Keys.ENTER);
+//        WebUI.sleep(5);
+//        driver.findElement(By.xpath("(//div[@class='card-file-thumb']//img)[1]")).click();
+//        WebUI.sleep(5);
+//        driver.findElement(By.xpath("//button[normalize-space()='Add Files']")).click();
+//        WebUI.sleep(5);
 
          //trường Meta title
         driver.findElement(By.xpath("//input[@placeholder='Meta Title']")).sendKeys("Category_2811A1");
