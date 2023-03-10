@@ -9,6 +9,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class BTAssert extends BaseTest {
+    private String CUSTOMER_NAME ="COMPANY_ABC11";
+    private String EDITCUSTOMER_NAME = "VNTPT11";
     @Test(priority = 1)
     public void loginCMS () {
         System.out.println("Login");
@@ -24,29 +26,28 @@ public class BTAssert extends BaseTest {
     @Test (priority = 2)
     public void oppenCategory() {
         WebUI.waitForPageLoaded(driver);
-//        String product = driver.findElement(By.xpath("//span[normalize-space()='Products']")).getText();
-//        Assert.assertEquals(product,"Products","It is not Product menu");
-//        WebUI.waitForPageLoaded(driver);
+        String product = driver.findElement(By.xpath("//span[normalize-space()='Products']")).getText();
+        Assert.assertEquals(product,"Products","It is not Product menu");
+        WebUI.waitForPageLoaded(driver);
         driver.findElement(By.xpath("//span[normalize-space()='Products']")).click();
         WebUI.waitForPageLoaded(driver);
-        // Thread.sleep(100);
+        WebUI.sleep(1);
 
 //        String category = driver.findElement(By.xpath("//span[normalize-space()='Category']")).getText();
 //        WebUI.waitForPageLoaded(driver);
 //        Assert.assertEquals(category,"Category","It is not Category menu");
 //        WebUI.waitForPageLoaded(driver);
         driver.findElement(By.xpath("//span[normalize-space()='Category']")).click();
-        //  Thread.sleep(100);
+        WebUI.sleep(1);
 
-//        String addCategory = driver.findElement(By.xpath("//span[normalize-space()='Add New category']")).getText();
-//        Assert.assertEquals(addCategory,"Add New category","It is not Add Category");
+        String addCategory = driver.findElement(By.xpath("//span[normalize-space()='Add New category']")).getText();
+        Assert.assertEquals(addCategory,"Add New category","It is not Add Category");
         WebUI.waitForPageLoaded(driver);
         driver.findElement(By.xpath("//span[normalize-space()='Add New category']")).click();
 
         WebUI.waitForPageLoaded(driver);
     }
 
-        private String CUSTOMER_NAME ="VODAPLAY.COM";
 
 
     @Test (priority = 3)
@@ -107,22 +108,38 @@ public class BTAssert extends BaseTest {
 
         driver.findElement(By.xpath("//button[.='Save']")).click();
 
+
+
+
+    }
+    @Test(priority = 4)
+    public void ktCategory (){
         //Tìm kiếm đã add
+        WebUI.sleep(1);
         driver.findElement(By.xpath("//input[@id='search']")).sendKeys(CUSTOMER_NAME,Keys.ENTER);
         WebUI.sleep(1);
 
-        String categoryItem = driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
+        String categoryItem = driver.findElement(By.xpath("//tbody/tr[2]/td[2]")).getText();
         System.out.println("Get category item:" +categoryItem);
-        Assert.assertEquals(categoryItem,CUSTOMER_NAME);
+        Assert.assertEquals(categoryItem,CUSTOMER_NAME, "Name không đúng");
 
         WebUI.sleep(1);
-        driver.findElement(By.xpath("//tbody/tr[1]/td[10]/a[1]")).click();
+        driver.findElement(By.xpath("//tbody/tr[2]/td[10]/a[1]")).click();
 
         String getCategoryInDetail = driver.findElement(By.xpath("//input[@id='name']")).getAttribute("value");
         System.out.println("Categoryname detail:" +getCategoryInDetail);
         Assert.assertEquals(getCategoryInDetail,CUSTOMER_NAME,"FAILED. Category not match.");
+        WebUI.sleep(1);
 
-
+        //edit
+        driver.findElement(By.xpath("//input[@id='name']")).clear();
+        driver.findElement(By.xpath("//input[@id='name']")).sendKeys(EDITCUSTOMER_NAME);
+        driver.findElement(By.xpath("//button[.='Save']")).click();
+        // kiểm tra lại phần đã edit
+        driver.findElement(By.xpath("//span[normalize-space()='Category']")).click();
+        WebUI.sleep(1);
+        driver.findElement(By.xpath("//input[@id='search']")).sendKeys(EDITCUSTOMER_NAME,Keys.ENTER);
+        WebUI.sleep(1);
 
 
     }
