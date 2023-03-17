@@ -1,29 +1,33 @@
 package loantester.com.common;
 
+import loantester.com.keywords.WebUI;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
 public class BaseTest {
 
+
     public WebDriver driver;
-    @BeforeClass
-    public void createDriver() {
-        //WebDriverManager.chromedriver().setup();
-        System.out.println("Start Chrome browser from BaseTest");
+
+    @BeforeMethod
+    public void createBrowser() {
+        System.out.println("Start Chrome browser from BaseTest...");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+
+        //Chờ đợi trang load xong (trong 40s)
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
     }
 
-
-    @AfterClass
+    @AfterMethod
     public void closeBrowser() {
-        System.out.println("close Chrome browser from BaseTest");
+        WebUI.sleep(2);
+        System.out.println("Close browser from BaseTest...");
         driver.quit();
     }
 }

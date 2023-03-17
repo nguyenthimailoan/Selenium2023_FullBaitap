@@ -1,6 +1,6 @@
 package loantester.com.baitap1_2;
 
-import KeyWords.WebUI;
+import loantester.com.keywords.WebUI;
 import loantester.com.common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

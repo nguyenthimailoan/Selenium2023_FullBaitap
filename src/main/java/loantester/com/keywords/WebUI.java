@@ -1,29 +1,26 @@
-package KeyWords;
-
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+package loantester.com.keywords;
+import dev.failsafe.internal.util.Assert;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 import java.time.Duration;
 import java.util.List;
 
+//import static loantester.com.drivers.DriverManager.getDriver;
+
 public class WebUI {
-    public static void sleep(double second){
+    public static void sleep(double second) {
         try {
-            Thread.sleep((long)(1000 * second));
+            Thread.sleep((long) (1000 * second));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
     public static void waitForElementVisible(WebDriver driver, By by, int second) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(second));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(second), Duration.ofMillis(500));
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
@@ -34,13 +31,36 @@ public class WebUI {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public static void waitForElementClickable  (WebDriver driver, By by, int second) {
+    public static void waitForElementClickable(WebDriver driver, By by, int second) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(second));
 
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
-    public static Boolean checkElementExist(WebDriver driver, By by) {
+    public static boolean verifyElementVisible(WebDriver driver, By by, int second) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(second), Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            return true;
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    public static boolean verifyElementNotVisible(WebDriver driver, By by, int second) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(second), Duration.ofMillis(500));
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+            return true;
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean checkElementExist(WebDriver driver, By by) {
         List<WebElement> listElement = driver.findElements(by);
 
         if (listElement.size() > 0) {
@@ -91,7 +111,7 @@ public class WebUI {
                 wait.until(jsLoad);
             } catch (Throwable error) {
                 error.printStackTrace();
-           //     Assert.fail("FAILED. Timeout waiting for page load.");
+                Assert.fail("FAILED. Timeout waiting for page load.");
             }
         }
     }

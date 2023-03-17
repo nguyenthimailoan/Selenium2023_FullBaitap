@@ -1,6 +1,6 @@
 package loantester.com.baitap3;
 
-import KeyWords.WebUI;
+import loantester.com.keywords.WebUI;
 import loantester.com.common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -15,8 +15,9 @@ public class BTAssert extends BaseTest {
     public void loginCMS () {
         System.out.println("Login");
         driver.get("https://cms.anhtester.com/login");
-
+        WebUI.sleep(1);
         driver.findElement(By.xpath("//input[@id='email']")).sendKeys("admin@example.com");
+        WebUI.sleep(1);
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
         driver.findElement(By.xpath("//button[normalize-space()='Login']")).click();
 
