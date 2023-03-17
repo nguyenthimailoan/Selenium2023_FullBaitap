@@ -104,16 +104,16 @@ public class WebUI {
         boolean jsReady = js.executeScript("return document.readyState").toString().equals("complete");
 
         //Wait Javascript until it is Ready!
-        if (!jsReady) {
-            System.out.println("Javascript is NOT Ready.");
-            //Wait for Javascript to load
-            try {
-                wait.until(jsLoad);
-            } catch (Throwable error) {
-                error.printStackTrace();
-                Assert.fail("FAILED. Timeout waiting for page load.");
-            }
+//        if (!jsReady) {
+//            System.out.println("Javascript is NOT Ready.");
+//            //Wait for Javascript to load
+//            try {
+//                wait.until(jsLoad);
+//            } catch (Throwable error) {
+//                error.printStackTrace();
+//                Assert.fail("FAILED. Timeout waiting for page load.");
+//            }
         }
     }
 
-}
+

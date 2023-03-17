@@ -36,22 +36,31 @@ public class BtActionRobot extends BaseTest {
     public void AddNewProductInformation (){
      //   WebUI.waitForPageLoaded(driver);
         driver.findElement(By.xpath("//input[@placeholder='Product Name']")).sendKeys(ProductName);
+        WebUI.sleep(5);
         driver.findElement(By.xpath("//label[.='Category *']/following-sibling::div/div")).click();
         driver.findElement(By.xpath("//div[@class='dropdown-menu show']/div/input[@class='form-control']")).sendKeys("PROTEL", Keys.ENTER);
-        WebUI.sleep(1);
+        WebUI.sleep(5);
         //trường Brand
         driver.findElement(By.xpath("//label[normalize-space()='Brand']/following-sibling::div/div")).click();
+        WebUI.sleep(5);
         driver.findElement(By.xpath("//div[@class='dropdown-menu show']/div/input")).sendKeys("Pie",Keys.ENTER);
+        WebUI.sleep(5);
         //trường Unit
         driver.findElement(By.xpath("//input[@placeholder='Unit (e.g. KG, Pc etc)']")).sendKeys("KG");
+        WebUI.sleep(5);
         //trường Weight
         driver.findElement(By.xpath("//input[@placeholder='0.00']")).clear();
+        WebUI.sleep(5);
         driver.findElement(By.xpath("//input[@placeholder='0.00']")).sendKeys("100");
+        WebUI.sleep(10);
         //trường Minium
-        driver.findElement(By.xpath("//label[contains(.,\\'Minimum Purchase Qty *\\')]/following-sibling::div")).clear();
-        driver.findElement(By.xpath("//label[contains(.,'Minimum Purchase Qty *')]/following-sibling::div")).sendKeys("200");
+        driver.findElement(By.xpath("//input[@name='min_qty']")).clear();
+        WebUI.sleep(10);
+        driver.findElement(By.xpath("//input[@name='min_qty']")).sendKeys("200");
+        WebUI.sleep(10);
         //trường Tags
         driver.findElement(By.xpath("//label[contains(text(),'Tags')]/following-sibling::div//tags")).sendKeys("TagsTest",Keys.ENTER);
+        WebUI.sleep(10);
 
     }
 
