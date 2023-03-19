@@ -4,7 +4,9 @@ import loantester.com.keywords.WebUI;
 import loantester.com.common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class BtActionRobot extends BaseTest {
     private String ProductName = "Loantester";
@@ -63,5 +65,105 @@ public class BtActionRobot extends BaseTest {
         WebUI.sleep(10);
 
     }
+
+    @Test(priority = 4)
+    public void AddProductShipConf() throws InterruptedException {
+
+        SoftAssert softAssert = new SoftAssert();
+        Boolean stockText = driver.findElement(By.xpath("//label[normalize-space()='Flat Rate']//following-sibling::div//label[@class='aiz-switch aiz-switch-success mb-0']")).isSelected();
+        if (stockText == false) {
+            softAssert.assertTrue(stockText, "Flat Rate option is inactive");
+            driver.findElement(By.xpath("//label[normalize-space()='Flat Rate']/following-sibling::div//label[@class='aiz-switch aiz-switch-success mb-0']")).click();
+            Thread.sleep(1000);
+
+            Boolean shipCost = driver.findElement(By.xpath("//input[@placeholder='Shipping cost']")).isEnabled();
+            softAssert.assertTrue(shipCost, "Shipping cost field is inactive");
+            driver.findElement(By.xpath("//input[@placeholder='Shipping cost']")).clear();
+            driver.findElement(By.xpath("//input[@placeholder='Shipping cost']")).sendKeys("$60");
+            Thread.sleep(1000);
+        }
+
+        Boolean quantityMul = driver.findElement(By.xpath("//label[normalize-space()='Is Product Quantity Mulitiply']/following-sibling::div//label[@class='aiz-switch aiz-switch-success mb-0']")).isSelected();
+        if (quantityMul == false) {
+            softAssert.assertTrue(quantityMul, "Status of Today Deal option is inactive");
+            driver.findElement(By.xpath("//label[normalize-space()='Is Product Quantity Mulitiply']/following-sibling::div//label[@class='aiz-switch aiz-switch-success mb-0']")).click();
+            Thread.sleep(2000);
+        }
+
+        driver.findElement(By.xpath("//input[@name='low_stock_quantity']")).clear();
+        driver.findElement(By.xpath("//input[@name='low_stock_quantity']")).sendKeys("200");
+        Thread.sleep(1000);
+
+    }
+    @Test(priority = 5)
+    public void AddProductImages(){
+        driver.findElement(By.xpath("//label[contains(normalize-space(),'(600x600)')]/following-sibling::div/div[contains(.,'Choose File')]")).click();
+        WebUI.sleep(10);
+        driver.findElement(By.xpath("//input[@class='form-control form-control-xs']")).sendKeys("Trathainguyen",Keys.ENTER);
+        WebUI.sleep(10);
+        driver.findElement(By.xpath("//div[@class='card-file-thumb']/img")).click();
+        WebUI.sleep(10);
+        driver.findElement(By.xpath("//button[.='Add Files']")).click();
+        WebUI.sleep(10);
+
+    }
+    @Test(priority = 6)
+    public void AddProductVisiState() throws InterruptedException {
+
+        SoftAssert softAssert = new SoftAssert();
+        Boolean stockText = driver.findElement(By.xpath("//label[normalize-space()='Show Stock With Text Only']//following-sibling::div//label[@class='aiz-switch aiz-switch-success mb-0']")).isSelected();
+        if (stockText == true) {
+            softAssert.assertFalse(stockText, "Stock Text option is inactive");
+            driver.findElement(By.xpath("//label[normalize-space()='Show Stock With Text Only']//following-sibling::div//label[@class='aiz-switch aiz-switch-success mb-0']")).click();
+            Thread.sleep(1000);
+        }
+
+        Boolean stockHide = driver.findElement(By.xpath("//label[normalize-space()='Hide Stock']//following-sibling::div//label[@class='aiz-switch aiz-switch-success mb-0']")).isSelected();
+        if (stockHide == false) {
+            softAssert.assertTrue(stockHide, "Hide stock option is inactive");
+            driver.findElement(By.xpath("//label[normalize-space()='Hide Stock']//following-sibling::div//label[@class='aiz-switch aiz-switch-success mb-0']")).click();
+            Thread.sleep(1000);
+        }
+
+    }
+    @Test(priority = 7)
+    public void AddProductVideos(){
+        SoftAssert softAssert = new SoftAssert();
+        driver.findElement(By.xpath("//label[normalize-space()='Video Provider']/following-sibling::div/div")).click();
+        driver.findElement(By.xpath("//span[.='Youtube']")).click();
+        // trường videolink
+        driver.findElement(By.xpath("//label[normalize-space()='Video Link']/following-sibling::div/input")).sendKeys("https://www.youtube.com/watch?v=h34f_3-kC6U&t=7226s",Keys.ENTER);
+
+        boolean statusOption = driver.findElement(By.xpath("//label[normalize-space()='Status']/following-sibling::div/label[@class='aiz-switch aiz-switch-success mb-0']")).isSelected();
+        if(statusOption==false){
+            softAssert.assertTrue(statusOption,"Status ioption is inactive");
+            driver.findElement(By.xpath("//label[normalize-space()='Status']/following-sibling::div/label[@class='aiz-switch aiz-switch-success mb-0']")).click();
+            WebUI.sleep(10);
+    }
+    }
+    @Test(priority = 8)
+    public void AddProductVariation(){
+        WebUI.sleep(10);
+        SoftAssert softAssert = new SoftAssert();
+        boolean ColorCheckbox = driver.findElement(By.xpath("//div[@class='col-md-1']")).isSelected();
+        if(ColorCheckbox == true){
+            Assert.assertTrue(ColorCheckbox,"Color option is inactive");
+            driver.findElement(By.xpath("//div[@class='col-md-1']")).click();
+            WebUI.sleep(10);
+        }
+        driver.findElement(By.xpath("//button[@data-id='colors']")).click();
+        driver.findElement(By.xpath("//div[@class='dropdown-menu show']/div/input")).sendKeys("Dark",Keys.ENTER);
+        driver.findElement(By.xpath("//span[contains(text(),'DarkBlue')]")).click();
+        driver.findElement(By.xpath("//span[contains(text(),'DarkGray')]")).click();
+
+        //verify select color
+        String SelectedColor = driver.findElement(By.xpath("//div[contains(text(),'3 items selected')]")).getText();
+        softAssert.assertEquals(SelectedColor,"3 items selected","selected color are incorrect");
+
+    }
+
+
+
+
 
 }
