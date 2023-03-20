@@ -151,10 +151,15 @@ public class BtActionRobot extends BaseTest {
             driver.findElement(By.xpath("//div[@class='col-md-1']")).click();
             WebUI.sleep(10);
         }
+        WebUI.sleep(10);
         driver.findElement(By.xpath("//button[@data-id='colors']")).click();
-        driver.findElement(By.xpath("//div[@class='dropdown-menu show']/div/input")).sendKeys("Dark",Keys.ENTER);
-        driver.findElement(By.xpath("//span[contains(text(),'DarkBlue')]")).click();
-        driver.findElement(By.xpath("//span[contains(text(),'DarkGray')]")).click();
+        WebUI.sleep(1000);
+        driver.findElement(By.xpath("//div[@class='dropdown-menu show']//input[@aria-label='Search']")).sendKeys("red");
+        WebUI.sleep(1000);
+        driver.findElement(By.xpath("//span[contains(text(),'DarkRed')]")).click();
+        WebUI.sleep(1000);
+        driver.findElement(By.xpath("//span[contains(text(),'OrangeRed')]")).click();
+        WebUI.sleep(1000);
 
         //verify select color
         String SelectedColor = driver.findElement(By.xpath("//div[contains(text(),'3 items selected')]")).getText();
