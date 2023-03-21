@@ -3,6 +3,7 @@ package loantester.com.POM.baitap5_6_7_8.pages;
 import loantester.com.keywords.WebUI;
 import static loantester.com.keywords.WebUI.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class LoginPage {
@@ -19,9 +20,33 @@ public class LoginPage {
     By ClickbuttonLogin = By.xpath("//button[@class='btn btn-primary btn-lg btn-block']");
 
 
+    //Hàm xây dựng để truyền vào driver
+    private WebDriver driver;
+
+    public LoginPage(WebDriver _driver){
+        driver = _driver;
+        new WebUI(driver);
+    }
     //Viết các hàm xử lý cho trang Login
 
     public void verifyHeaderPage(){
         Assert.assertEquals(getTextElement(headerPage),"Welcome to Active eCommerce CMS","FAIL.Header not match.");
+    }
+    public void enterEmail (String email){
+        setText(inputEmail,email);
+    }
+    public void enterpassword(String password){
+        setText(inputPassword,password);
+    }
+    public void clickOnbuttonLogin(){
+        clickElement(ClickbuttonLogin);
+    }
+
+    public void login(String email,String password){
+        openURL(URL);
+        verifyHeaderPage();
+        enterEmail(email);
+        enterpassword(password);
+        clickOnbuttonLogin();
     }
 }

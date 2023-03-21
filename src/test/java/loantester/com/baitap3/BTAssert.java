@@ -25,13 +25,13 @@ public class BTAssert extends BaseTest {
 
     @Test (priority = 2)
     public void oppenCategory() {
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         WebUI.sleep(5);
         String product = driver.findElement(By.xpath("//span[normalize-space()='Products']")).getText();
         Assert.assertEquals(product,"Products","It is not Product menu");
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         driver.findElement(By.xpath("//span[normalize-space()='Products']")).click();
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         WebUI.sleep(5);
 
 //        String category = driver.findElement(By.xpath("//span[normalize-space()='Category']")).getText();
@@ -43,20 +43,20 @@ public class BTAssert extends BaseTest {
 
         String addCategory = driver.findElement(By.xpath("//span[normalize-space()='Add New category']")).getText();
         Assert.assertEquals(addCategory,"Add New category","It is not Add Category");
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         driver.findElement(By.xpath("//span[normalize-space()='Add New category']")).click();
 
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
     }
 
 
 
     @Test (priority = 3)
     public void addCategory(){
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         WebUI.sleep(1);
         driver.findElement(By.xpath("//input[@id='name']")).sendKeys(CUSTOMER_NAME);
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
 
         driver.findElement(By.xpath("//label[normalize-space()='Parent Category']/following-sibling::div/div")).click();
         driver.findElement(By.xpath("//label[normalize-space()='Parent Category']/following-sibling::div/div//input")).sendKeys("Demo category 1",Keys.ENTER);
@@ -117,7 +117,7 @@ public class BTAssert extends BaseTest {
     @Test(priority = 4)
     public void ktCategory (){
         //Tìm kiếm đã add
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         WebUI.sleep(5);
         driver.findElement(By.xpath("//input[@id='search']")).sendKeys(CUSTOMER_NAME,Keys.ENTER);
         WebUI.sleep(5);
