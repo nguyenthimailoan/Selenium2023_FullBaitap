@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import static loantester.com.keywords.WebUI.*;
+
 public class DashboardPage {
     // datat trong nội bộ trang Dashboard
     private String PAGE_URL ="https://cms.anhtester.com/admin";
@@ -12,7 +14,9 @@ public class DashboardPage {
     //Các Object
     By titlleLogo = By.xpath("//span[normalize-space()='Admin Example']");
     By Profile = By.xpath("//span[normalize-space()='Profile']");
+    By detailProfile = By.xpath("//h5");
     By Logout = By.xpath("//span[normalize-space()='Logout']");
+    By Clicklogout = By.xpath("//h1[.='Welcome to Active eCommerce CMS']");
 
     // Hàm xây dựng
     private WebDriver driver;
@@ -24,10 +28,18 @@ public class DashboardPage {
     public void verifyDashboardPage(){
         //kiểm tra URL chứa phần thuộc trang DB
         Assert.assertEquals(getCurrentUrl(),PAGE_URL,"URL chưa đúng trang Dashboard");
-    }
-
-    public void verifytitlelogo(){
-        Assert.assertEquals(getTextElement(titlleLogo));
+        Assert.assertTrue(checkElementExist(titlleLogo),"Dashboard option not existing");
+        clickElement(titlleLogo);
 
     }
+
+  public void Verifyprofile(){
+        clickElement(Profile);
+        Assert.assertEquals(getTextElement(detailProfile),"Profile","Header profile not match");
+  }
+//    public void verifyLogout(){
+//        clickElement(Logout);
+//        Assert.assertEquals(getTextElement(Clicklogout),"Welcome to Active eCommerce CMS","title logout is not match");
+//
+//    }
 }
