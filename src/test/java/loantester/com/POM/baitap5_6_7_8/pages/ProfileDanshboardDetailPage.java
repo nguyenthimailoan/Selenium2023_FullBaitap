@@ -30,12 +30,15 @@ public class ProfileDanshboardDetailPage {
         WebUI.waitForPageLoaded();
         System.out.println(getAttributeElement(Name,"value"));
         System.out.println(getAttributeElement(Email,"value"));
-        System.out.println(getAttributeElement(Newpassword,"value"));
-        System.out.println(getAttributeElement(Confirmpassword,"value"));
+//        System.out.println(getAttributeElement(Newpassword,"placeholder"));
+//        System.out.println(getAttributeElement(Confirmpassword,"placeholder"));
 
         //Kiểm tra thì phải dùng Assert
         //phải dùng Equals chứ không nên dùng Contains vì giá trị phải đúng chính xác
         Assert.assertEquals(getAttributeElement(Name,"value"),"Admin Example","Name not match.");
+        Assert.assertEquals(getAttributeElement(Email,"value"),"admin@example.com","Email not match.");
+//        Assert.assertEquals(getAttributeElement(Newpassword,"placeholder"),"confirm password","New password not match.");
+//       Assert.assertEquals(getAttributeElement(Confirmpassword,"placeholder"),"Confirmpassword","Confirmpassword not match.");
 
     }
 
