@@ -12,6 +12,9 @@ public class DashboardPage {
     private String PAGE_URL ="https://cms.anhtester.com/admin";
 
     //Các Object
+    public By ProductMenu = By.xpath("//span[.='Products']");
+    public By CategoryMenu = By.xpath("//span[.='Category']");
+    public By addNewCategoryButton = By.xpath("//span[.='Add New category']");
     By titlleLogo = By.xpath("//span[normalize-space()='Admin Example']");
     By Profile = By.xpath("//span[normalize-space()='Profile']");
     By detailProfile = By.xpath("//h5");
@@ -30,6 +33,15 @@ public class DashboardPage {
         Assert.assertEquals(getCurrentUrl(),PAGE_URL,"URL chưa đúng trang Dashboard");
         Assert.assertTrue(checkElementExist(titlleLogo),"Dashboard option not existing");
         clickElement(titlleLogo);
+
+    }
+
+    public CategoryPage openCategoryPage(){
+        waitForPageLoaded();
+        clickElement(ProductMenu);
+        clickElement(CategoryMenu);
+        clickElement(addNewCategoryButton);
+        return new CategoryPage();
 
     }
 

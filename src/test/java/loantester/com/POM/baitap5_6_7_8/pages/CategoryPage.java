@@ -1,6 +1,7 @@
 package loantester.com.POM.baitap5_6_7_8.pages;
-
+import static loantester.com.keywords.WebUI.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 public class CategoryPage {
 
@@ -8,9 +9,6 @@ public class CategoryPage {
     private String URL ="https://cms.anhtester.com/admin/categories";
    // private String PAGE_TEXT = "Category";
 
-    //Các Object
-    public By CategoryMenu = By.xpath("//span[.='Category']");
-    public By addNewCategoryButton = By.xpath("//span[.='Add New category']");
 
     public By Name = By.xpath("//input[@id='name']");
     public By ParentCategoryField =  By.xpath("//label[normalize-space()='Parent Category']/following-sibling::div/div");
@@ -21,7 +19,14 @@ public class CategoryPage {
     public By BannerField = By.xpath("//label[.='Banner (200x200)']/following-sibling::div");
     public By BannerSearch = By.xpath("//input[@class='form-control form-control-xs']");
     public By BannerClick = By.xpath("//img[@class='img-fit']");
-    public By BannerAddFiles = By.xpath("//button[normalize-space()='Add Files']");
+    public By BannerClickAddFiles = By.xpath("//button[normalize-space()='Add Files']");
+
+    public void Banner(String banner){
+        clickElement(BannerField);
+        getWebElement(BannerSearch).sendKeys(banner,Keys.ENTER);
+        clickElement(BannerClick);
+        clickElement(BannerClickAddFiles);
+    }
 
     public By MetaTitle = By.xpath("//input[@name='meta_title']");
     public By MetaDescription = By.xpath("//textarea[@class='form-control']");
@@ -31,14 +36,42 @@ public class CategoryPage {
     public By FilteringAttributesClick = By.xpath("//label[.='Filtering Attributes']/following-sibling::div/div");
 
 
-    public void FilteringAttributes(){
+    public void FilteringAttributes(String filtering){
         clickElement(FilteringAttributesFiles);
+        getWebElement(FilteringAttributesSearch).sendKeys(filtering, Keys.ENTER);
+        clickElement(FilteringAttributesClick);
     }
 
     public By Savebutton = By.xpath("//button[.='Save']");
 
 
-    public void AddCategory (){
+    public void AddCategory (String CATEGORY_NAME){
+        waitForPageLoaded();
+//        clickElement(CategoryMenu);
+//        clickElement(addNewCategoryButton);
+
+        setText(Name,CATEGORY_NAME);
+        clickElement(ParentCategoryField);
+        getWebElement(ParentCategoryFieldSeacrh).sendKeys("ĐỒNG HỒ",Keys.ENTER);
+        setText(OrderingNumber,"01920121");
+
+        clickElement(BannerField);
+        sleep(10);
+        getWebElement(BannerSearch).sendKeys("TraThaiNguyen",Keys.ENTER);
+        sleep(10);
+        clickElement(BannerClick);
+        sleep(10);
+        clickElement(BannerClickAddFiles);
+
+        setText(MetaTitle,"Parfum");
+        setText(MetaDescription,"Description test");
+
+        clickElement(FilteringAttributesFiles);
+        getWebElement(FilteringAttributesSearch).sendKeys("Size", Keys.ENTER);
+        clickElement(FilteringAttributesClick);
+        clickElement(Savebutton);
+        waitForPageLoaded();
+
 
 
     }

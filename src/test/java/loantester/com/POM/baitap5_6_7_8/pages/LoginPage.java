@@ -42,11 +42,12 @@ public class LoginPage {
         clickElement(ClickbuttonLogin);
     }
 
-    public void login(String email,String password){
+    public DashboardPage login(String email,String password){
         openURL(URL);
         verifyHeaderPage();
         enterEmail(email);
         enterpassword(password);
         clickOnbuttonLogin();
+        return new DashboardPage(); //
     }
 }
