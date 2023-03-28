@@ -1,5 +1,7 @@
 package loantester.com.POM.baitap5_6_7_8.pages;
 
+import loantester.com.POM.baitap5_6_7_8.pages.Category.CategoryPage;
+import loantester.com.POM.baitap5_6_7_8.pages.Category.ViewCategoryPage;
 import loantester.com.keywords.WebUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,9 +14,9 @@ public class DashboardPage {
     private String PAGE_URL ="https://cms.anhtester.com/admin";
 
     //Các Object
+
     public By ProductMenu = By.xpath("//span[.='Products']");
     public By CategoryMenu = By.xpath("//span[.='Category']");
-    public By addNewCategoryButton = By.xpath("//span[.='Add New category']");
     By titlleLogo = By.xpath("//span[normalize-space()='Admin Example']");
     By Profile = By.xpath("//span[normalize-space()='Profile']");
     By detailProfile = By.xpath("//h5");
@@ -36,12 +38,12 @@ public class DashboardPage {
 
     }
 
-    public CategoryPage openCategoryPage(){
+    public ViewCategoryPage openCategoryPage(){
         waitForPageLoaded();
         clickElement(ProductMenu);
         clickElement(CategoryMenu);
-        clickElement(addNewCategoryButton);
-        return new CategoryPage();
+ //       clickElement(addNewCategoryButton);
+        return new ViewCategoryPage(driver);
 
     }
 

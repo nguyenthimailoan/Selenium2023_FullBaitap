@@ -1,7 +1,10 @@
-package loantester.com.POM.baitap5_6_7_8.pages;
+package loantester.com.POM.baitap5_6_7_8.pages.Category;
 import static loantester.com.keywords.WebUI.*;
+
+import loantester.com.keywords.WebUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 
 public class CategoryPage {
 
@@ -20,6 +23,7 @@ public class CategoryPage {
     public By BannerSearch = By.xpath("//input[@class='form-control form-control-xs']");
     public By BannerClick = By.xpath("//img[@class='img-fit']");
     public By BannerClickAddFiles = By.xpath("//button[normalize-space()='Add Files']");
+
 
     public void Banner(String banner){
         clickElement(BannerField);
@@ -45,7 +49,14 @@ public class CategoryPage {
     public By Savebutton = By.xpath("//button[.='Save']");
 
 
-    public void AddCategory (String CATEGORY_NAME){
+    private WebDriver driver;
+
+    public CategoryPage(WebDriver _driver) {
+        driver = _driver;
+        new WebUI(driver); //Khởi tạo class WebUI để truyền giá trị driver từ bên ngoài vào WebUI
+    }
+
+    public void AddNewCategory (String CATEGORY_NAME){
         waitForPageLoaded();
 //        clickElement(CategoryMenu);
 //        clickElement(addNewCategoryButton);
@@ -72,8 +83,7 @@ public class CategoryPage {
         clickElement(Savebutton);
         waitForPageLoaded();
 
-
-
     }
+
 
 }

@@ -48,6 +48,6 @@ public class LoginPage {
         enterEmail(email);
         enterpassword(password);
         clickOnbuttonLogin();
-        return new DashboardPage(); //
+        return new DashboardPage(driver); //
     }
 }
