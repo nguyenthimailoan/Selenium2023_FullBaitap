@@ -48,7 +48,7 @@ public class ViewCategoryPage {
 
     public void searchCategory(String CATEGORY_NAME){
         waitForPageLoaded();
-        setText(inputSearch,CATEGORY_NAME);
+    //    setText(inputSearch,CATEGORY_NAME);
         getWebElement(inputSearch).sendKeys(CATEGORY_NAME,Keys.ENTER);
 
         sleep(10);

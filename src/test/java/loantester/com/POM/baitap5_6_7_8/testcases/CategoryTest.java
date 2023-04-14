@@ -41,6 +41,7 @@ public class CategoryTest extends BaseTest {
         WebUI.sleep(10);
 
         categorydetailpage = new CategoryDetailPage(driver);
+
        categorydetailpage.checkCategoryDetail("AUTOTEST1");
 
 

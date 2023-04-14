@@ -18,14 +18,14 @@ public class CategoryDetailPage extends CategoryPage {
         new WebUI(driver);
     }
 
-    public void checkCategoryDetail(String CATEGORYNAME) {
+    public void checkCategoryDetail(String CATEGORY_NAME) {
         WebUI.waitForPageLoaded();
         System.out.println(getAttributeElement(Name, "value"));
         System.out.println(getAttributeElement(ParentCategoryField,"value"));
         System.out.println(getAttributeElement(OrderingNumber,"value"));
         System.out.println(getAttributeElement(MetaTitle,"value"));
 
-        Assert.assertEquals(getAttributeElement(Name, "value"),CATEGORYNAME,"Category not match");
+        Assert.assertEquals(getAttributeElement(Name, "value"),CATEGORY_NAME,"Category not match");
         Assert.assertEquals(getAttributeElement(ParentCategoryField,"value"),"ĐỒNG HỒ","parent not match");
         Assert.assertEquals(getAttributeElement(OrderingNumber,"value"),"01920121","OrderingNumber not match");
 
